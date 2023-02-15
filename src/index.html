@@ -8,7 +8,38 @@
    <title>Friendlee-digital</title>
 </head>
 <body>
-   <div>Hi</div>
+   <div class="wrapper">
+      <section class="main">
+         <h1 class="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
+         <div class="main__inputs inputs">
+            <div class="inputs__items">
+               <div class="inputs__item">
+                  <label class="inputs__label" for="price">Стоимость автомобиля</label>
+                  <input type="text" value="3300000">
+               </div>
+               <div class="inputs__item">
+                  <label class="inputs__label" for="first-payment">Первоначальный взнос</label>
+                  <input type="text" value="420000">
+               </div>
+               <div class="inputs__item">
+                  <label class="inputs__label" for="term">Срок лизинга</label>
+                  <input type="text" value="60">
+               </div>
+            </div>
+         </div>
+         <div class="main__results results">
+            <div class="results__item">
+               <label class="inputs__label" for="leasing">Сумма договора лизинга</label>
+               <input type="text" value="4467313">
+            </div>
+            <div class="results__item">
+               <label class="inputs__label" for="payment">Ежемесячный платеж от</label>
+               <input type="text" value="114455">
+            </div>
+            <button class="results__submit">Оставить заявку</button>
+         </div>
+      </section>
+   </div>
    <script src="./js/script.js"></script>
 </body>
 </html>
