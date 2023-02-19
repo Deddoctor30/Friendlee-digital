@@ -1,7 +1,8 @@
 // _________________________________Шрифты____________________________________
 @import url(../fonts/Gilroy/bold/style.css);
 @import url(../fonts/Gilroy/regular/style.css);
-@import url(../fonts/Nekst/style.css);
+@import url(../fonts//Nekst/black/style.css);
+@import url(../fonts//Nekst/regular/style.css);
 // ___________________________________________________________________________
 
 
@@ -35,28 +36,12 @@
 
 html, body {
    font-family: gilroy;
-	font-size: 18px;
+	font-size: 16px;
    line-height: 1;
    font-weight: 400;
 	color: black;
 }
 
-
-// ____________________________Дефолтные элементы______________________________
-
-
-.img-adaptiv {
-   position: relative;
-   img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      object-fit: cover;
-      object-position: center;
-   }
-}
 
 
 // _____________________________SCSS переменные________________________________
@@ -69,12 +54,15 @@ html, body {
    color: $c;
 }
 
-$font_color_light: #FFFFFF;
+$input_bg_color: #F3F3F4;
+
 $font_color_dark: #333333;
-$button_color_light: #FFFFFF;
-$button_color_dark: #333333;
-$header_line_color: #333333df;
-$modal_bg_color: #FFFFFF;
+$font_color_dark_second: #111111;
+$font_color_light: #575757;
+
+
+$main_color: #FF9514;
+
 
 
 
@@ -95,43 +83,19 @@ $modal_bg_color: #FFFFFF;
 // __________________________________Кнопки_______________________________________
 
 
+
 .btn {
-   // Фиксированные размеры
-   width: 300px;
-   height: 65px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   height: 68px;
 
-   // Обтекание
-   // padding: 15px 35px;
-
-   @include style(1rem, 140%, $font_color_light);
-   letter-spacing: 0.1em;
-   font-weight: 500;
-
-   // Внутнренняя обводка
-   box-shadow: 1px 1px 0 rgb(255, 255, 255) inset, -1px -1px 0 rgb(255, 255, 255) inset;
-   cursor: pointer;
-   &_white {
-      background-color: $button_color_light;
-      color: $font_color_dark;
-      // border: none;
-      &:hover {
-         background-color: $button_color_dark;
-         color: $font_color_light;
-      }
-   }
-   &_dark {
-      background-color: $button_color_dark;
-      color: $font_color_light;
-      box-shadow: 1px 1px 0 rgb(0, 0, 0) inset, -1px -1px 0 rgb(0, 0, 0) inset;
-      // border: none;
-      &:hover {
-         background-color: $button_color_light;
-         color: $font_color_dark;
-         // border: 1px solid black;
-      }
+   @include style(1.875rem, 2.25rem, $font_color_dark);
+   font-family: 'Nekst-Black';
+   font-style: normal;
+   font-weight: 900;
+   color: #FFFFFF;
+   background: $main_color;
+   &_long {
+      border-radius: 40px;
+      width: 426px;
    }
 }
 
@@ -150,7 +114,7 @@ $modal_bg_color: #FFFFFF;
 
 .container {
    //_________________Ширина контейнера_________________
-   max-width: 1110px;
+   width: 1345px;
 
    //_____________________По центру_____________________
    margin: 0 auto;

@@ -2,7 +2,12 @@
 /*Обнуление*/
 @import url(../fonts/Gilroy/bold/style.css);
 @import url(../fonts/Gilroy/regular/style.css);
-@import url(../fonts/Nekst/style.css);
+@import url(../fonts//Nekst/black/style.css);
+@import url(../fonts//Nekst/regular/style.css);
+@import url(../fonts/Gilroy/bold/style.css);
+@import url(../fonts/Gilroy/regular/style.css);
+@import url(../fonts//Nekst/black/style.css);
+@import url(../fonts//Nekst/regular/style.css);
 * {
   padding: 0;
   margin: 0;
@@ -77,6 +82,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
+input[disabled] {
+  background-color: inherit;
+}
+
 /*
    &>*:not(:last-child){
       margin: 0px 0px 50px 0px;
@@ -98,25 +107,10 @@ h1, h2, h3, h4, h5, h6 {
 
 html, body {
   font-family: gilroy;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   font-weight: 400;
   color: black;
-}
-
-.img-adaptiv {
-  position: relative;
-}
-.img-adaptiv img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
 }
 
 .text__sibtitle--hover a:hover {
@@ -124,35 +118,19 @@ html, body {
 }
 
 .btn {
-  width: 300px;
-  height: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  line-height: 140%;
-  color: #FFFFFF;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  box-shadow: 1px 1px 0 rgb(255, 255, 255) inset, -1px -1px 0 rgb(255, 255, 255) inset;
-  cursor: pointer;
-}
-.btn_white {
-  background-color: #FFFFFF;
+  height: 68px;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   color: #333333;
-}
-.btn_white:hover {
-  background-color: #333333;
+  font-family: "Nekst-Black";
+  font-style: normal;
+  font-weight: 900;
   color: #FFFFFF;
+  background: #FF9514;
 }
-.btn_dark {
-  background-color: #333333;
-  color: #FFFFFF;
-  box-shadow: 1px 1px 0 rgb(0, 0, 0) inset, -1px -1px 0 rgb(0, 0, 0) inset;
-}
-.btn_dark:hover {
-  background-color: #FFFFFF;
-  color: #333333;
+.btn_long {
+  border-radius: 40px;
+  width: 426px;
 }
 
 .wrapper {
@@ -163,8 +141,219 @@ html, body {
 }
 
 .container {
-  max-width: 1110px;
+  width: 1345px;
   margin: 0 auto;
   padding: 0px 15px;
   box-sizing: content-box;
+}
+
+/*
+   &>*:not(:last-child){
+      margin: 0px 0px 50px 0px;
+   }
+
+   line-height: calc(([размер интервала]/[размер шрифта])*100%);
+
+   Javascript
+   Чтобы избежать конфликта присваиваний, делаем проверку на мобилку
+   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      код для телефона
+   } else {
+      код для десктопа
+   }
+*/
+* {
+  transition: 0.3s all ease 0s;
+}
+
+html, body {
+  font-family: gilroy;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  color: black;
+}
+
+.text__sibtitle--hover a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  height: 68px;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #333333;
+  font-family: "Nekst-Black";
+  font-style: normal;
+  font-weight: 900;
+  color: #FFFFFF;
+  background: #FF9514;
+}
+.btn_long {
+  border-radius: 40px;
+  width: 426px;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 1345px;
+  margin: 0 auto;
+  padding: 0px 15px;
+  box-sizing: content-box;
+}
+
+.main {
+  margin: 213px 0px 0px 0px;
+}
+.main__title {
+  width: 753px;
+  font-size: 3.375rem;
+  line-height: 90%;
+  color: #111111;
+  font-family: "Nekst-Black";
+  font-style: normal;
+}
+
+.inputs {
+  margin-top: 32px;
+}
+.inputs__items {
+  width: 100%;
+  display: flex;
+  -moz-column-gap: 32px;
+       column-gap: 32px;
+}
+.inputs__item {
+  position: relative;
+}
+.inputs__label {
+  margin-bottom: 24px;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  color: #575757;
+}
+.inputs__input {
+  display: block;
+  height: 68px;
+  background-color: #F3F3F4;
+  border-radius: 16px;
+  padding: 16px 24px;
+  font-family: "Nekst-Black";
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #575757;
+  font-weight: 900;
+}
+.inputs__ruble {
+  position: relative;
+}
+.inputs__ruble::after {
+  content: "₽";
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #575757;
+  position: absolute;
+  font-family: "Nekst-Black";
+  font-style: normal;
+  font-weight: 900;
+  top: -55px;
+  left: 380px;
+}
+.inputs__first-payment {
+  position: relative;
+  padding: 15px 17px;
+  font-size: 1.25rem;
+  line-height: 120%;
+  color: #575757;
+  height: 54px;
+  width: 69px;
+  background: #EBEBEC;
+  border-radius: 16px;
+  position: absolute;
+  font-family: "Nekst-Black";
+  font-style: normal;
+  font-weight: 900;
+  top: 50px;
+  left: 342px;
+}
+.inputs__term {
+  position: relative;
+}
+.inputs__term::after {
+  content: "мес.";
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #575757;
+  position: absolute;
+  font-family: "Nekst-Black";
+  font-style: normal;
+  font-weight: 900;
+  top: -55px;
+  left: 340px;
+}
+.inputs__range-wrapper {
+  width: 100%;
+  padding: 0px 20px;
+  overflow: hidden;
+}
+.inputs__slider {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  -webkit-appearance: none;
+  width: 85%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: #E1E1E1;
+  outline: none;
+}
+.inputs__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FF9514;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transform: scale(1);
+}
+.inputs__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.results {
+  margin-top: 44px;
+}
+.results__items {
+  display: flex;
+}
+.results__item {
+  margin-right: 32px;
+}
+.results__label {
+  margin-bottom: 8px;
+  display: block;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #575757;
+  position: relative;
+}
+.results__input {
+  width: 427px;
+  font-size: 3.375rem;
+  line-height: 90%;
+  color: #333333;
+  font-weight: 900;
+}
+.results__submit {
+  margin-top: 24px;
 }

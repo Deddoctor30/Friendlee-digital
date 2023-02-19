@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Nekst-Regular';
+    src: local('Nekst-Regular'), local('Nekst-Regular'),
+        url('Nekst-Regular.woff') format('woff'),
+        url('Nekst-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }

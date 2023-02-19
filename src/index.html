@@ -9,37 +9,56 @@
 </head>
 <body>
    <div class="wrapper">
-      <section class="main">
-         <h1 class="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
-         <div class="main__inputs inputs">
-            <div class="inputs__items">
-               <div class="inputs__item">
-                  <label class="inputs__label" for="price">Стоимость автомобиля</label>
-                  <input type="text" value="3300000">
-               </div>
-               <div class="inputs__item">
-                  <label class="inputs__label" for="first-payment">Первоначальный взнос</label>
-                  <input type="text" value="420000">
-               </div>
-               <div class="inputs__item">
-                  <label class="inputs__label" for="term">Срок лизинга</label>
-                  <input type="text" value="60">
+      <div class="container">
+         <section class="main">
+            <h1 class="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
+            <div class="main__inputs inputs">
+               <div class="inputs__items">
+                  <div class="inputs__item">
+                     <label class="inputs__label" for="price">Стоимость автомобиля</label>
+                     <input class="inputs__input" name="price" id="price" type="text" value="3300000">
+                     <span class="inputs__ruble"></span>
+                     <div class="inputs__range-wrapper">
+                        <input type="range" min="0" max="8500000" value="3300000" class="inputs__slider" id="priceRange">
+                     </div>
+                  </div>
+
+                  <div class="inputs__item">
+                     <div class="inputs__inner">
+                     <label class="inputs__label" for="first-payment">Первоначальный взнос</label>
+                        <input class="inputs__input" name="first-payment" id="first-payment" type="text" value="420000">
+                        <span class="inputs__first-payment">13%</span>
+                     </div>
+                     <div class="inputs__range-wrapper">
+                        <input type="range" min="0" max="50" value="13" class="inputs__slider" id="firstPaymentRange">
+                     </div>
+                  </div>
+                  <div class="inputs__item">
+                     <label class="inputs__label" for="term">Срок лизинга</label>
+                     <input class="inputs__input" name="term" id="term" type="text" value="60">
+                     <span class="inputs__term"></span>
+                     <div class="inputs__range-wrapper">
+                        <input type="range" min="6" max="120" value="60" class="inputs__slider" id="termRange">
+                     </div>
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="main__results results">
-            <div class="results__item">
-               <label class="inputs__label" for="leasing">Сумма договора лизинга</label>
-               <input type="text" value="4467313">
+            <div class="main__results results">
+               <div class="results__items">
+                  <div class="results__item">
+                     <label class="results__label" for="leasing">Сумма договора лизинга</label>
+                     <input class="results__input" disabled type="text" value="4467313">
+                  </div>
+                  <div class="results__item">
+                     <label class="results__label" for="payment">Ежемесячный платеж от</label>
+                     <input class="results__input" disabled type="text" value="114455">
+                  </div>
+                  <button class="results__submit btn btn_long">Оставить заявку</button>
+               </div>
             </div>
-            <div class="results__item">
-               <label class="inputs__label" for="payment">Ежемесячный платеж от</label>
-               <input type="text" value="114455">
-            </div>
-            <button class="results__submit">Оставить заявку</button>
-         </div>
-      </section>
+         </section>
+      </div>
    </div>
-   <script src="./js/script.js"></script>
+   <script src="../dist/js/bundle.js"></script>
 </body>
 </html>
