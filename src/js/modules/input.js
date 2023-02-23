@@ -1,10 +1,13 @@
 import {params} from '../services/rangeParams';
-import {numberWithSpaces} from '../services/numConverter';
+import {toSpaces} from '../services/toSpaces';
+import { toNumber } from '../services/toNumber';
 import inputValidation from '../services/inputValidation';
 
 const input = () => {
    let minValue = 0;
    let maxValue = 0;
+
+   priceRangeValue = 0;
 
 
    const priceInput = document.querySelector('#price'),
@@ -15,60 +18,58 @@ const input = () => {
          termRange = document.querySelector('#termRange'),
          firstPymentProc = document.querySelector('.inputs__first-payment');
 
-
    const myInputs = document.querySelectorAll(".inputs__input, .results__input");
 
 
    window.addEventListener('load', () => {
       myInputs.forEach(item => {
-         item.value = numberWithSpaces(item.value)
+         item.value = toSpaces(item.value)
 
       })
    });
-   
 
    priceInput.addEventListener('input', (e) => {
-      priceInput.value = numberWithSpaces(e.target.value);
+      priceInput.value = toSpaces(e.target.value);
       inputValidation(priceInput.value, priceInput, '1 500 000', '10 000 000', true)
-      priceRange.value = (+(priceInput.value).replace(/ /g,'') - 1500000);
+      priceRange.value = toNumber(priceInput.value) - 1500000;
       params(priceRange)
-      firstPaymentInput.value = numberWithSpaces(Math.round(+priceRange.value * 0.1));
+      firstPaymentInput.value = toSpaces(Math.round(+priceRange.value * 0.1));
 
 
-      const value = +(priceInput.value).replace(/ /g,'');
+      const value = toNumber(priceInput.value);
       minValue = String(Math.floor(value * 0.1));
       maxValue = String(Math.floor(value * 0.6));
 
    })
    priceRange.addEventListener('input', () => {
-      priceInput.value = numberWithSpaces(+priceRange.value + 1500000);
-      firstPaymentInput.value = numberWithSpaces(Math.round(+(priceInput.value).replace(/ /g,'') * 0.1));
+      priceInput.value = toSpaces(+priceRange.value + 1500000);
+      firstPaymentInput.value = toSpaces(Math.round(toNumber(priceInput.value) * 0.1));
    })
 
    
    firstPaymentInput.addEventListener('input', (e) => {
-      firstPaymentInput.value = numberWithSpaces(e.target.value);
-      const value = +(priceInput.value).replace(/ /g,'');
+      firstPaymentInput.value = toSpaces(e.target.value);
+      const value = toNumber(priceInput.value);
       const minValue = String(value * 0.1);
       const maxValue = String(value * 0.6);
       
       inputValidation(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true)
 
-      const paymentValue = +(firstPaymentInput.value).replace(/ /g,'');
+      const paymentValue = toNumber(firstPaymentInput.value);
 
       firstPymentProc.innerHTML = `${Math.floor((paymentValue / value)*100)}%`
    })
    firstPaymentRange.addEventListener('input', () => {
-      const value = +(priceInput.value).replace(/ /g,'');
+      const value = toNumber(priceInput.value);
       const minValue = String(value * 0.1);
       const maxValue = String(value * 0.6);
 
       firstPaymentRange.min = minValue;
       firstPaymentRange.max = maxValue;
 
-      firstPaymentInput.value = numberWithSpaces(Math.round(+firstPaymentRange.value));
+      firstPaymentInput.value = toSpaces(Math.round(+firstPaymentRange.value));
 
-      const paymentValue = +(firstPaymentRange.value).replace(/ /g,'');
+      const paymentValue = toNumber(firstPaymentRange.value);
       firstPymentProc.innerHTML = `${Math.floor((paymentValue / value)*100)}%`
    })
 }

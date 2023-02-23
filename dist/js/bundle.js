@@ -18,14 +18,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
-/* harmony import */ var _services_numConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/numConverter */ "./src/js/services/numConverter.js");
-/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
-
+/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
+/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
+/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
+/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
 
 
 
@@ -36,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 var input = function input() {
   var minValue = 0;
   var maxValue = 0;
+  priceRangeValue = 0;
   var priceInput = document.querySelector('#price'),
     firstPaymentInput = document.querySelector('#first-payment'),
     termInput = document.querySelector('#term'),
@@ -46,40 +43,40 @@ var input = function input() {
   var myInputs = document.querySelectorAll(".inputs__input, .results__input");
   window.addEventListener('load', function () {
     myInputs.forEach(function (item) {
-      item.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(item.value);
+      item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(item.value);
     });
   });
   priceInput.addEventListener('input', function (e) {
-    priceInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(e.target.value);
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
-    priceRange.value = +priceInput.value.replace(/ /g, '') - 1500000;
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_5__.params)(priceRange);
-    firstPaymentInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(Math.round(+priceRange.value * 0.1));
-    var value = +priceInput.value.replace(/ /g, '');
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
+    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) - 1500000;
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(priceRange);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round(+priceRange.value * 0.1));
+    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
     minValue = String(Math.floor(value * 0.1));
     maxValue = String(Math.floor(value * 0.6));
   });
   priceRange.addEventListener('input', function () {
-    priceInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(+priceRange.value + 1500000);
-    firstPaymentInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(Math.round(+priceInput.value.replace(/ /g, '') * 0.1));
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(+priceRange.value + 1500000);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * 0.1));
   });
   firstPaymentInput.addEventListener('input', function (e) {
-    firstPaymentInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(e.target.value);
-    var value = +priceInput.value.replace(/ /g, '');
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
+    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
     var minValue = String(value * 0.1);
     var maxValue = String(value * 0.6);
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
-    var paymentValue = +firstPaymentInput.value.replace(/ /g, '');
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
+    var paymentValue = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value);
     firstPymentProc.innerHTML = "".concat(Math.floor(paymentValue / value * 100), "%");
   });
   firstPaymentRange.addEventListener('input', function () {
-    var value = +priceInput.value.replace(/ /g, '');
+    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
     var minValue = String(value * 0.1);
     var maxValue = String(value * 0.6);
     firstPaymentRange.min = minValue;
     firstPaymentRange.max = maxValue;
-    firstPaymentInput.value = (0,_services_numConverter__WEBPACK_IMPORTED_MODULE_6__.numberWithSpaces)(Math.round(+firstPaymentRange.value));
-    var paymentValue = +firstPaymentRange.value.replace(/ /g, '');
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round(+firstPaymentRange.value));
+    var paymentValue = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentRange.value);
     firstPymentProc.innerHTML = "".concat(Math.floor(paymentValue / value * 100), "%");
   });
 };
@@ -179,38 +176,6 @@ var inputValidation = function inputValidation(value, position, minValue, maxVal
 
 /***/ }),
 
-/***/ "./src/js/services/numConverter.js":
-/*!*****************************************!*\
-  !*** ./src/js/services/numConverter.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "numberWithSpaces": () => (/* binding */ numberWithSpaces)
-/* harmony export */ });
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.date.to-string.js */ "./node_modules/core-js/modules/es.date.to-string.js");
-/* harmony import */ var core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.regexp.to-string.js */ "./node_modules/core-js/modules/es.regexp.to-string.js");
-/* harmony import */ var core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-
-
-function numberWithSpaces(x) {
-  return x.toString().replace(/[^0-9.]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
-
-/***/ }),
-
 /***/ "./src/js/services/rangeParams.js":
 /*!****************************************!*\
   !*** ./src/js/services/rangeParams.js ***!
@@ -229,6 +194,61 @@ var params = function params(item) {
   var valPercent = Math.round(item.value / item.max * 100);
   item.style.background = "linear-gradient(to right, #FF9514 ".concat(valPercent, "%, #E1E1E1 ").concat(valPercent, "%)");
 };
+
+/***/ }),
+
+/***/ "./src/js/services/toNumber.js":
+/*!*************************************!*\
+  !*** ./src/js/services/toNumber.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "toNumber": () => (/* binding */ toNumber)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var toNumber = function toNumber(value) {
+  return +value.replace(/ /g, '');
+};
+
+/***/ }),
+
+/***/ "./src/js/services/toSpaces.js":
+/*!*************************************!*\
+  !*** ./src/js/services/toSpaces.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "toSpaces": () => (/* binding */ toSpaces)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.date.to-string.js */ "./node_modules/core-js/modules/es.date.to-string.js");
+/* harmony import */ var core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.regexp.to-string.js */ "./node_modules/core-js/modules/es.regexp.to-string.js");
+/* harmony import */ var core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_to_string_js__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function toSpaces(x) {
+  return x.toString().replace(/[^0-9.]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
 /***/ }),
 
