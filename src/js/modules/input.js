@@ -17,10 +17,10 @@ const input = () => {
          termRange = document.querySelector('#termRange'),
          firstPymentProc = document.querySelector('.inputs__first-payment'),
          leasingSum = document.querySelector('#leasingSum'),
+         rubleSymbol = document.querySelector('#first-payment-label'),
          montlyPayment = document.querySelector('#montlyPayment');
 
    const myInputs = document.querySelectorAll(".inputs__input, .results__input");
-
 
    window.addEventListener('load', () => {
       myInputs.forEach(item => {
@@ -31,7 +31,6 @@ const input = () => {
 
    // Первый инпут
    priceInput.addEventListener('input', (e) => {
-      // priceInput.value = secondInputValue;
       priceInput.value = toSpaces(e.target.value);
       
       inputValidation(priceInput.value, priceInput, '1 500 000', '10 000 000', true)
@@ -46,10 +45,11 @@ const input = () => {
       leasingFunc()
    })
 
-
    // Второй инпут
    firstPaymentInput.addEventListener('input', (e) => {
-      firstPaymentInput.value = toSpaces(e.target.value);
+      let x = `${toSpaces(e.target.value)} ₽`;
+
+      firstPaymentInput.value = x;
       
       const value = toNumber(priceInput.value);
       const minValue = String(Math.round(value * 0.1));
@@ -61,13 +61,26 @@ const input = () => {
       firstPaymentRange.value = percentValue;
       params(firstPaymentRange)
       leasingFunc()
+
+      document.addEventListener('keydown', (e) => {
+         e.preventDefault();
+         if(e.key === 'Backspace') {
+            firstPaymentInput.value = x.slice(0, -1);
+         }
+      })
    })
    firstPaymentRange.addEventListener('input', () => {
       percentValue = +firstPaymentRange.value;
-      firstPaymentInput.value = toSpaces(Math.floor(toNumber(priceInput.value) * (percentValue*0.01)))
+      firstPaymentInput.value = `${toSpaces(Math.floor(toNumber(priceInput.value) * (percentValue*0.01)))} ₽`
       firstPymentProc.innerHTML = `${percentValue}%`
       leasingFunc()
+      // rubleSymbolFunc()
    })
+
+
+   window.addEventListener("hashchange", function(e) {
+      console.log('da');
+    })
 
 
    // Третий инпут
@@ -90,6 +103,12 @@ const input = () => {
       montlyPayment.value = toSpaces(payment)
    }
    leasingFunc()
+
+   // const rubleSymbolFunc = () => {
+   //    let value = `${(firstPaymentInput.value.length * 8) + 95}px`;
+   //    document.querySelector('.reserv').style.setProperty('--sq-value', value)
+   // }
+   // rubleSymbolFunc()
 }
 
 export default input;

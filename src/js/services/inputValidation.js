@@ -33,7 +33,7 @@ const inputValidation = (value, position, minValue, maxValue, isNumber = true) =
       position.before(validError)
    }
    if (isNumber) {
-      if (isNaN(+(value).replace(/ /g,''))) {
+      if (isNaN(+(value).replace(/ /g,'').replace('₽', ''))) {
          const validError = document.createElement('p');
          validError.classList.add('valudation')
          validError.innerHTML = `Введите числовое значение`;

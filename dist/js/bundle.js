@@ -18,10 +18,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
-/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
-/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
-/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
+/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
+/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
+/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
+
 
 
 
@@ -40,55 +43,67 @@ var input = function input() {
     termRange = document.querySelector('#termRange'),
     firstPymentProc = document.querySelector('.inputs__first-payment'),
     leasingSum = document.querySelector('#leasingSum'),
+    rubleSymbol = document.querySelector('#first-payment-label'),
     montlyPayment = document.querySelector('#montlyPayment');
   var myInputs = document.querySelectorAll(".inputs__input, .results__input");
   window.addEventListener('load', function () {
     myInputs.forEach(function (item) {
-      item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(item.value);
+      item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(item.value);
     });
   });
 
   // Первый инпут
   priceInput.addEventListener('input', function (e) {
-    // priceInput.value = secondInputValue;
-    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
-    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(priceRange);
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(e.target.value);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
+    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(priceRange);
     leasingFunc();
   });
   priceRange.addEventListener('input', function () {
-    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(+priceRange.value);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(+priceRange.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01)));
     leasingFunc();
   });
 
   // Второй инпут
   firstPaymentInput.addEventListener('input', function (e) {
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
-    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
+    var x = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(e.target.value), " \u20BD");
+    firstPaymentInput.value = x;
+    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value);
     var minValue = String(Math.round(value * 0.1));
     var maxValue = String(Math.round(value * 0.6));
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
-    percentValue = Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) / (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * 100);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
+    percentValue = Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value) / (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * 100);
     firstPymentProc.innerHTML = "".concat(percentValue, "%");
     firstPaymentRange.value = percentValue;
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(firstPaymentRange);
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(firstPaymentRange);
     leasingFunc();
+    document.addEventListener('keydown', function (e) {
+      e.preventDefault();
+      if (e.key === 'Backspace') {
+        firstPaymentInput.value = x.slice(0, -1);
+      }
+    });
   });
   firstPaymentRange.addEventListener('input', function () {
     percentValue = +firstPaymentRange.value;
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    firstPaymentInput.value = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01))), " \u20BD");
     firstPymentProc.innerHTML = "".concat(percentValue, "%");
     leasingFunc();
+    // rubleSymbolFunc()
+  });
+
+  window.addEventListener("hashchange", function (e) {
+    console.log('da');
   });
 
   // Третий инпут
   termInput.addEventListener('input', function () {
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(termInput.value, termInput, '6', '120', true);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(termInput.value, termInput, '6', '120', true);
     termRange.value = termInput.value;
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(termRange);
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(termRange);
     leasingFunc();
   });
   termRange.addEventListener('input', function () {
@@ -96,13 +111,20 @@ var input = function input() {
     leasingFunc();
   });
   var leasingFunc = function leasingFunc() {
-    var payment = Math.floor(((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) - (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value)) * (0.05 * Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) / (Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) - 1)));
-    var leasing = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) + (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value) * payment;
-    leasingSum.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(leasing);
-    montlyPayment.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(payment);
+    var payment = Math.floor(((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) - (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value)) * (0.05 * Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value)) / (Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value)) - 1)));
+    var leasing = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value) + (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value) * payment;
+    leasingSum.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(leasing);
+    montlyPayment.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(payment);
   };
   leasingFunc();
+
+  // const rubleSymbolFunc = () => {
+  //    let value = `${(firstPaymentInput.value.length * 8) + 95}px`;
+  //    document.querySelector('.reserv').style.setProperty('--sq-value', value)
+  // }
+  // rubleSymbolFunc()
 };
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (input);
 
 /***/ }),
@@ -190,7 +212,7 @@ var inputValidation = function inputValidation(value, position, minValue, maxVal
     position.before(_validError);
   }
   if (isNumber) {
-    if (isNaN(+value.replace(/ /g, ''))) {
+    if (isNaN(+value.replace(/ /g, '').replace('₽', ''))) {
       var _validError2 = document.createElement('p');
       _validError2.classList.add('valudation');
       _validError2.innerHTML = "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0447\u0438\u0441\u043B\u043E\u0432\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435";
@@ -532,6 +554,19 @@ module.exports = function (METHOD_NAME, argument) {
     method.call(null, argument || function () { return 1; }, 1);
   });
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-slice.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/array-slice.js ***!
+  \*******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
+
+module.exports = uncurryThis([].slice);
 
 
 /***/ }),
@@ -3141,6 +3176,66 @@ var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_mod
 // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
   forEach: forEach
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.slice.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.slice.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+var isConstructor = __webpack_require__(/*! ../internals/is-constructor */ "./node_modules/core-js/internals/is-constructor.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js/internals/to-absolute-index.js");
+var lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ "./node_modules/core-js/internals/length-of-array-like.js");
+var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js/internals/to-indexed-object.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+var nativeSlice = __webpack_require__(/*! ../internals/array-slice */ "./node_modules/core-js/internals/array-slice.js");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+
+var SPECIES = wellKnownSymbol('species');
+var $Array = Array;
+var max = Math.max;
+
+// `Array.prototype.slice` method
+// https://tc39.es/ecma262/#sec-array.prototype.slice
+// fallback for not array-like ES3 strings and DOM objects
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  slice: function slice(start, end) {
+    var O = toIndexedObject(this);
+    var length = lengthOfArrayLike(O);
+    var k = toAbsoluteIndex(start, length);
+    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+    var Constructor, result, n;
+    if (isArray(O)) {
+      Constructor = O.constructor;
+      // cross-realm fallback
+      if (isConstructor(Constructor) && (Constructor === $Array || isArray(Constructor.prototype))) {
+        Constructor = undefined;
+      } else if (isObject(Constructor)) {
+        Constructor = Constructor[SPECIES];
+        if (Constructor === null) Constructor = undefined;
+      }
+      if (Constructor === $Array || Constructor === undefined) {
+        return nativeSlice(O, k, fin);
+      }
+    }
+    result = new (Constructor === undefined ? $Array : Constructor)(max(fin - k, 0));
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+    result.length = n;
+    return result;
+  }
 });
 
 

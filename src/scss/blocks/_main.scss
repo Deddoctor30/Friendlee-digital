@@ -19,6 +19,7 @@
 			width: 100%;
 			display: flex;
 			column-gap: 32px;
+			justify-content: space-between;
 		}
 
 		&__item {
@@ -33,9 +34,9 @@
 
 		&__input {
 			display: block;
+			flex: 1 1 auto;
 
 			height: 68px;
-			// width: 427px;
 
 			background-color: $input_bg_color;
 			border-radius: 16px;
@@ -130,10 +131,10 @@
 	margin-top: 44px;
 		&__items {
 			display: flex;
-			// justify-content: space-between;
+			justify-content: space-between;
 		}
 		&__item {
-			margin-right: 32px;
+			// margin-right: 32px;
 		}
 
 		&__label {
@@ -144,18 +145,16 @@
 		}
 
 		&__input {
-			width: 427px;
-			@include style(3.375rem, 90%, $font_color_dark);
+			width: 100%;
+			font-family: 'Nekst-Black';
+			@include style(3.375rem, 36px, $font_color_dark);
 			font-weight: 900;
-
 		}
 
 		&__submit {
 			margin-top: 24px;
 		}
 }
-
-
 
 
 

@@ -113,10 +113,6 @@ html, body {
   color: black;
 }
 
-.text__sibtitle--hover a:hover {
-  text-decoration: underline;
-}
-
 .btn {
   height: 68px;
   font-size: 1.875rem;
@@ -174,10 +170,6 @@ html, body {
   color: black;
 }
 
-.text__sibtitle--hover a:hover {
-  text-decoration: underline;
-}
-
 .btn {
   height: 68px;
   font-size: 1.875rem;
@@ -228,6 +220,7 @@ html, body {
   display: flex;
   -moz-column-gap: 32px;
        column-gap: 32px;
+  justify-content: space-between;
 }
 .inputs__item {
   position: relative;
@@ -241,6 +234,7 @@ html, body {
 }
 .inputs__input {
   display: block;
+  flex: 1 1 auto;
   height: 68px;
   background-color: #F3F3F4;
   border-radius: 16px;
@@ -335,9 +329,7 @@ html, body {
 }
 .results__items {
   display: flex;
-}
-.results__item {
-  margin-right: 32px;
+  justify-content: space-between;
 }
 .results__label {
   margin-bottom: 8px;
@@ -348,9 +340,10 @@ html, body {
   position: relative;
 }
 .results__input {
-  width: 427px;
+  width: 100%;
+  font-family: "Nekst-Black";
   font-size: 3.375rem;
-  line-height: 90%;
+  line-height: 36px;
   color: #333333;
   font-weight: 900;
 }
