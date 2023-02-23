@@ -1,12 +1,15 @@
+import {toSpaces} from '../services/toSpaces';
+import { toNumber } from '../services/toNumber';
+
 const inputValidation = (value, position, minValue, maxValue, isNumber = true) => {
 
    if (document.querySelector('.valudation')) {
       document.querySelector('.valudation').remove()
    }
-   if (+(value).replace(/ /g,'') < minValue) {
+   if (toNumber(value) < toNumber(minValue)) {
       const validError = document.createElement('p');
       validError.classList.add('valudation')
-      validError.innerHTML = `Минимальное значение ${minValue}`;
+      validError.innerHTML = `Минимальное значение ${toSpaces(minValue)}`;
       validError.style.cssText = `
       position: absolute;
       top: 125px;
@@ -16,10 +19,10 @@ const inputValidation = (value, position, minValue, maxValue, isNumber = true) =
       `;
       position.after(validError)
    }
-   if (+(value).replace(/ /g,'') > maxValue) {
+   if (toNumber(value) > toNumber(maxValue)) {
       const validError = document.createElement('p');
       validError.classList.add('valudation')
-      validError.innerHTML = `Максимальное значение ${maxValue}`;
+      validError.innerHTML = `Максимальное значение ${toSpaces(maxValue)}`;
       validError.style.cssText = `
       position: absolute;
       top: 125px;

@@ -4,10 +4,9 @@ import { toNumber } from '../services/toNumber';
 import inputValidation from '../services/inputValidation';
 
 const input = () => {
-   let minValue = 0;
-   let maxValue = 0;
 
-   priceRangeValue = 0;
+   let percentValue = 13;
+   let secondInputValue = 0;
 
 
    const priceInput = document.querySelector('#price'),
@@ -16,7 +15,9 @@ const input = () => {
          priceRange= document.querySelector('#priceRange'),
          firstPaymentRange = document.querySelector('#firstPaymentRange'),
          termRange = document.querySelector('#termRange'),
-         firstPymentProc = document.querySelector('.inputs__first-payment');
+         firstPymentProc = document.querySelector('.inputs__first-payment'),
+         leasingSum = document.querySelector('#leasingSum'),
+         montlyPayment = document.querySelector('#montlyPayment');
 
    const myInputs = document.querySelectorAll(".inputs__input, .results__input");
 
@@ -28,50 +29,67 @@ const input = () => {
       })
    });
 
+   // Первый инпут
    priceInput.addEventListener('input', (e) => {
+      // priceInput.value = secondInputValue;
       priceInput.value = toSpaces(e.target.value);
+      
       inputValidation(priceInput.value, priceInput, '1 500 000', '10 000 000', true)
-      priceRange.value = toNumber(priceInput.value) - 1500000;
+      priceRange.value = toNumber(priceInput.value);
+      firstPaymentInput.value = toSpaces(Math.round(toNumber(priceInput.value) * (percentValue*0.01)));
       params(priceRange)
-      firstPaymentInput.value = toSpaces(Math.round(+priceRange.value * 0.1));
-
-
-      const value = toNumber(priceInput.value);
-      minValue = String(Math.floor(value * 0.1));
-      maxValue = String(Math.floor(value * 0.6));
-
+      leasingFunc()
    })
    priceRange.addEventListener('input', () => {
-      priceInput.value = toSpaces(+priceRange.value + 1500000);
-      firstPaymentInput.value = toSpaces(Math.round(toNumber(priceInput.value) * 0.1));
+      priceInput.value = toSpaces(+priceRange.value);
+      firstPaymentInput.value = toSpaces(Math.round(toNumber(priceInput.value) * (percentValue*0.01)));
+      leasingFunc()
    })
 
-   
+
+   // Второй инпут
    firstPaymentInput.addEventListener('input', (e) => {
       firstPaymentInput.value = toSpaces(e.target.value);
+      
       const value = toNumber(priceInput.value);
-      const minValue = String(value * 0.1);
-      const maxValue = String(value * 0.6);
+      const minValue = String(Math.round(value * 0.1));
+      const maxValue = String(Math.round(value * 0.6));
       
       inputValidation(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true)
-
-      const paymentValue = toNumber(firstPaymentInput.value);
-
-      firstPymentProc.innerHTML = `${Math.floor((paymentValue / value)*100)}%`
+      percentValue = Math.floor((toNumber(firstPaymentInput.value) / toNumber(priceInput.value)*100))
+      firstPymentProc.innerHTML = `${percentValue}%`
+      firstPaymentRange.value = percentValue;
+      params(firstPaymentRange)
+      leasingFunc()
    })
    firstPaymentRange.addEventListener('input', () => {
-      const value = toNumber(priceInput.value);
-      const minValue = String(value * 0.1);
-      const maxValue = String(value * 0.6);
-
-      firstPaymentRange.min = minValue;
-      firstPaymentRange.max = maxValue;
-
-      firstPaymentInput.value = toSpaces(Math.round(+firstPaymentRange.value));
-
-      const paymentValue = toNumber(firstPaymentRange.value);
-      firstPymentProc.innerHTML = `${Math.floor((paymentValue / value)*100)}%`
+      percentValue = +firstPaymentRange.value;
+      firstPaymentInput.value = toSpaces(Math.floor(toNumber(priceInput.value) * (percentValue*0.01)))
+      firstPymentProc.innerHTML = `${percentValue}%`
+      leasingFunc()
    })
+
+
+   // Третий инпут
+   termInput.addEventListener('input', () => {
+      inputValidation(termInput.value, termInput, '6', '120', true);
+      termRange.value = termInput.value;
+      params(termRange)
+      leasingFunc()
+   })
+   termRange.addEventListener('input', () => {
+      termInput.value = +termRange.value;
+      leasingFunc()
+   })
+
+
+   const leasingFunc = () => {
+      const payment = Math.floor((toNumber(priceInput.value) - toNumber(firstPaymentInput.value)) * (0.05 * Math.pow((1 + 0.05), toNumber(termInput.value)) / (Math.pow((1 + 0.05), toNumber(termInput.value)) - 1)))
+      const leasing = toNumber(firstPaymentInput.value) + (toNumber(termInput.value) * payment)
+      leasingSum.value = toSpaces(leasing)
+      montlyPayment.value = toSpaces(payment)
+   }
+   leasingFunc()
 }
 
 export default input;

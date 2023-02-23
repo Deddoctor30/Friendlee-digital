@@ -19,7 +19,7 @@
                      <input class="inputs__input" name="price" id="price" type="text" value="3300000">
                      <span class="inputs__ruble"></span>
                      <div class="inputs__range-wrapper">
-                        <input type="range" min="0" max="8500000" value="3300000" class="inputs__slider" id="priceRange">
+                        <input type="range" step="5" min="1500000" max="10000000" value="3300000" class="inputs__slider" id="priceRange">
                      </div>
                   </div>
 
@@ -30,7 +30,7 @@
                         <span class="inputs__first-payment">13%</span>
                      </div>
                      <div class="inputs__range-wrapper">
-                        <input type="range" min="0" max="50" value="13" class="inputs__slider" id="firstPaymentRange">
+                        <input type="range" step="1" min="10" max="60" value="13" class="inputs__slider" id="firstPaymentRange">
                      </div>
                   </div>
                   <div class="inputs__item">
@@ -47,11 +47,11 @@
                <div class="results__items">
                   <div class="results__item">
                      <label class="results__label" for="leasing">Сумма договора лизинга</label>
-                     <input class="results__input" disabled type="text" value="4467313">
+                     <input class="results__input" disabled type="text" value="4467313" id="leasingSum">
                   </div>
                   <div class="results__item">
                      <label class="results__label" for="payment">Ежемесячный платеж от</label>
-                     <input class="results__input" disabled type="text" value="114455">
+                     <input class="results__input" disabled type="text" value="114455" id="montlyPayment">
                   </div>
                   <button class="results__submit btn btn_long">Оставить заявку</button>
                </div>

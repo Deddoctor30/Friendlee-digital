@@ -30,55 +30,78 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var input = function input() {
-  var minValue = 0;
-  var maxValue = 0;
-  priceRangeValue = 0;
+  var percentValue = 13;
+  var secondInputValue = 0;
   var priceInput = document.querySelector('#price'),
     firstPaymentInput = document.querySelector('#first-payment'),
     termInput = document.querySelector('#term'),
     priceRange = document.querySelector('#priceRange'),
     firstPaymentRange = document.querySelector('#firstPaymentRange'),
     termRange = document.querySelector('#termRange'),
-    firstPymentProc = document.querySelector('.inputs__first-payment');
+    firstPymentProc = document.querySelector('.inputs__first-payment'),
+    leasingSum = document.querySelector('#leasingSum'),
+    montlyPayment = document.querySelector('#montlyPayment');
   var myInputs = document.querySelectorAll(".inputs__input, .results__input");
   window.addEventListener('load', function () {
     myInputs.forEach(function (item) {
       item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(item.value);
     });
   });
+
+  // Первый инпут
   priceInput.addEventListener('input', function (e) {
+    // priceInput.value = secondInputValue;
     priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
     (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
-    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) - 1500000;
+    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
     (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(priceRange);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round(+priceRange.value * 0.1));
-    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
-    minValue = String(Math.floor(value * 0.1));
-    maxValue = String(Math.floor(value * 0.6));
+    leasingFunc();
   });
   priceRange.addEventListener('input', function () {
-    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(+priceRange.value + 1500000);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * 0.1));
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(+priceRange.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    leasingFunc();
   });
+
+  // Второй инпут
   firstPaymentInput.addEventListener('input', function (e) {
     firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
     var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
-    var minValue = String(value * 0.1);
-    var maxValue = String(value * 0.6);
+    var minValue = String(Math.round(value * 0.1));
+    var maxValue = String(Math.round(value * 0.6));
     (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
-    var paymentValue = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value);
-    firstPymentProc.innerHTML = "".concat(Math.floor(paymentValue / value * 100), "%");
+    percentValue = Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) / (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * 100);
+    firstPymentProc.innerHTML = "".concat(percentValue, "%");
+    firstPaymentRange.value = percentValue;
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(firstPaymentRange);
+    leasingFunc();
   });
   firstPaymentRange.addEventListener('input', function () {
-    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
-    var minValue = String(value * 0.1);
-    var maxValue = String(value * 0.6);
-    firstPaymentRange.min = minValue;
-    firstPaymentRange.max = maxValue;
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round(+firstPaymentRange.value));
-    var paymentValue = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentRange.value);
-    firstPymentProc.innerHTML = "".concat(Math.floor(paymentValue / value * 100), "%");
+    percentValue = +firstPaymentRange.value;
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    firstPymentProc.innerHTML = "".concat(percentValue, "%");
+    leasingFunc();
   });
+
+  // Третий инпут
+  termInput.addEventListener('input', function () {
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(termInput.value, termInput, '6', '120', true);
+    termRange.value = termInput.value;
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(termRange);
+    leasingFunc();
+  });
+  termRange.addEventListener('input', function () {
+    termInput.value = +termRange.value;
+    leasingFunc();
+  });
+  var leasingFunc = function leasingFunc() {
+    var payment = Math.floor(((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) - (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value)) * (0.05 * Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) / (Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) - 1)));
+    var leasing = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) + (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value) * payment;
+    leasingSum.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(leasing);
+    montlyPayment.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(payment);
+  };
+  leasingFunc();
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (input);
 
@@ -141,6 +164,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
 /* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
+/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
+
+
 
 
 var inputValidation = function inputValidation(value, position, minValue, maxValue) {
@@ -148,17 +175,17 @@ var inputValidation = function inputValidation(value, position, minValue, maxVal
   if (document.querySelector('.valudation')) {
     document.querySelector('.valudation').remove();
   }
-  if (+value.replace(/ /g, '') < minValue) {
+  if ((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_3__.toNumber)(value) < (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_3__.toNumber)(minValue)) {
     var validError = document.createElement('p');
     validError.classList.add('valudation');
-    validError.innerHTML = "\u041C\u0438\u043D\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 ".concat(minValue);
+    validError.innerHTML = "\u041C\u0438\u043D\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 ".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_2__.toSpaces)(minValue));
     validError.style.cssText = "\n      position: absolute;\n      top: 125px;\n      left: 50px;\n      margin: 0px 0px 2px 14px;\n      color: red;\n      ";
     position.after(validError);
   }
-  if (+value.replace(/ /g, '') > maxValue) {
+  if ((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_3__.toNumber)(value) > (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_3__.toNumber)(maxValue)) {
     var _validError = document.createElement('p');
     _validError.classList.add('valudation');
-    _validError.innerHTML = "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 ".concat(maxValue);
+    _validError.innerHTML = "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 ".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_2__.toSpaces)(maxValue));
     _validError.style.cssText = "\n      position: absolute;\n      top: 125px;\n      left: 50px;\n      margin: 0px 0px 2px 14px;\n      color: red;\n      ";
     position.before(_validError);
   }
@@ -191,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
 
 var params = function params(item) {
-  var valPercent = Math.round(item.value / item.max * 100);
+  var valPercent = Math.round(100 / (item.max - item.min) * (item.value - item.min));
   item.style.background = "linear-gradient(to right, #FF9514 ".concat(valPercent, "%, #E1E1E1 ").concat(valPercent, "%)");
 };
 
