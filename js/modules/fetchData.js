@@ -37,10 +37,10 @@ const fetchData = () => {
    function disabledHandler() {
       document.querySelectorAll(".inputs__input").forEach(item => {
          item.classList.toggle('disabled');
-         if (item.hasAttribute('readonly')) {
+         if (item.hasAttribute('readonly') && !item.classList.contains('result-input')) {
             item.removeAttribute('readonly');
          } else {
-            item.setAttribute('readonly', true);
+            item.setAttribute('readonly', '');
          }
       })
    }

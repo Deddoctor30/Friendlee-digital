@@ -14,8 +14,8 @@ const input = () => {
          firstPaymentRange = document.querySelector('#firstPaymentRange'),
          termRange = document.querySelector('#termRange'),
          firstPymentProc = document.querySelector('.inputs__first-payment'),
-         leasingSum = document.querySelector('#leasingSum'),
-         montlyPayment = document.querySelector('#montlyPayment'),
+         leasingSum = document.querySelector('#leasing'),
+         montlyPayment = document.querySelector('#payment'),
          btnContent = document.querySelector('.inpunts__btn-content'),
          resultBtn = document.querySelector('.result-btn');
 
