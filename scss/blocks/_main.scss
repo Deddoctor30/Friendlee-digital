@@ -167,7 +167,6 @@
 		}
 
 		&__range-wrapper{
-			// width: 100%;
 			padding: 0px 20px;
 			overflow: hidden;
 		}
@@ -241,6 +240,11 @@
 
 .result-btn {
 	margin-top: 12px;
+
+	@media (max-width: 700px) {
+		@include style(1.375rem, 2.25rem, #FFFFFF);
+		height: 60px;
+	}
 }
 
 .disabled {

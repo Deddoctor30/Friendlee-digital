@@ -86,21 +86,6 @@ input[disabled] {
   background-color: inherit;
 }
 
-/*
-   &>*:not(:last-child){
-      margin: 0px 0px 50px 0px;
-   }
-
-   line-height: calc(([размер интервала]/[размер шрифта])*100%);
-
-   Javascript
-   Чтобы избежать конфликта присваиваний, делаем проверку на мобилку
-   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      код для телефона
-   } else {
-      код для десктопа
-   }
-*/
 * {
   transition: 0.3s all ease 0s;
 }
@@ -155,21 +140,6 @@ html, body {
   display: none;
 }
 
-/*
-   &>*:not(:last-child){
-      margin: 0px 0px 50px 0px;
-   }
-
-   line-height: calc(([размер интервала]/[размер шрифта])*100%);
-
-   Javascript
-   Чтобы избежать конфликта присваиваний, делаем проверку на мобилку
-   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      код для телефона
-   } else {
-      код для десктопа
-   }
-*/
 * {
   transition: 0.3s all ease 0s;
 }
@@ -485,6 +455,14 @@ html, body {
 
 .result-btn {
   margin-top: 12px;
+}
+@media (max-width: 700px) {
+  .result-btn {
+    font-size: 1.375rem;
+    line-height: 2.25rem;
+    color: #FFFFFF;
+    height: 60px;
+  }
 }
 
 .disabled {
