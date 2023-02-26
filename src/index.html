@@ -12,50 +12,51 @@
       <div class="container">
          <section class="main">
             <h1 class="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
-            <div class="main__inputs inputs">
-               <div class="inputs__items">
+            <form class="inputs__form" action="GET">
+               <div class="main__inputs inputs">
                   <div class="inputs__item">
-                     <label class="inputs__label" for="price">Стоимость автомобиля</label>
-                     <input class="inputs__input" name="price" id="price" type="text" value="3300000">
-                     <span class="inputs__ruble"></span>
+                     <label class="inputs__label inputs__ruble" for="price">Стоимость автомобиля</label>
+                     <input class="inputs__input" name="price" id="price" type="text" value="3300000" tabindex="1">
                      <div class="inputs__range-wrapper">
                         <input type="range" step="5" min="1500000" max="10000000" value="3300000" class="inputs__slider" id="priceRange">
                      </div>
                   </div>
-
+   
                   <div class="inputs__item">
-                     <div class="inputs__inner">
                      <label class="inputs__label reserv" for="first-payment" id="first-payment-label">Первоначальный взнос</label>
-                        <input class="inputs__input" name="first-payment" id="first-payment" type="text" value="420000">
-                        <span class="inputs__first-payment">13%</span>
-                     </div>
+
+                     <input class="inputs__input ruble" name="firstPayment" id="first-payment" type="text" value="420000" tabindex="2">
+                     
+                     <span class="inputs__first-payment">13%</span>
                      <div class="inputs__range-wrapper">
                         <input type="range" step="1" min="10" max="60" value="13" class="inputs__slider" id="firstPaymentRange">
                      </div>
                   </div>
+   
                   <div class="inputs__item">
-                     <label class="inputs__label" for="term">Срок лизинга</label>
-                     <input class="inputs__input" name="term" id="term" type="text" value="60">
-                     <span class="inputs__term"></span>
+                     <label class="inputs__label inputs__term" for="term">Срок лизинга</label>
+                     <input class="inputs__input" name="term" id="term" type="text" value="60" tabindex="3">
                      <div class="inputs__range-wrapper">
                         <input type="range" min="6" max="120" value="60" class="inputs__slider" id="termRange">
                      </div>
                   </div>
-               </div>
-            </div>
-            <div class="main__results results">
-               <div class="results__items">
-                  <div class="results__item">
-                     <label class="results__label" for="leasing">Сумма договора лизинга</label>
-                     <input class="results__input" disabled type="text" value="4467313" id="leasingSum">
+   
+                  <div class="inputs__item">
+                     <label class="inputs__label result-label" for="leasing">Сумма договора лизинга</label>
+                     <input class="inputs__input result-input ruble" name="leasing" readonly="true" type="text" value="4467313 ₽" id="leasingSum">
                   </div>
-                  <div class="results__item">
-                     <label class="results__label" for="payment">Ежемесячный платеж от</label>
-                     <input class="results__input" disabled type="text" value="114455" id="montlyPayment">
+   
+                  <div class="inputs__item">
+                     <label class="inputs__label result-label" for="payment">Ежемесячный платеж от</label>
+                     <input class="inputs__input result-input ruble" name="payment" readonly="true" type="text" value="114455 ₽" id="montlyPayment">
                   </div>
-                  <button class="results__submit btn btn_long">Оставить заявку</button>
+                  <button class="inputs__item result-btn btn btn_long" tabindex="4"><span class="inpunts__btn-content">Оставить заявку</span>
+                     <svg class="spinner hide" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="15" fill="none" stroke-width="3"></circle>
+                     </svg>
+                  </button>
                </div>
-            </div>
+            </form>
          </section>
       </div>
    </div>

@@ -4,47 +4,107 @@
 .wrapper {
 }
 .main {
-   margin: 213px 0px 0px 0px;
+   margin: 213px 0px 213px 0px;
+
+	@media (max-width: 1024px) {
+		margin: 64px 0px 156px 0px;
+	}
+
+	@media (max-width: 700px) {
+		margin: 44px 0px 64px 0px;
+	}
 		&__title {
-			width: 753px;
+			max-width: 753px;
 
 			@include style(3.375rem, 90%, $font_color_dark_second);
 			font-family: 'Nekst-Black';
 			font-style: normal;
+
+			@media (max-width: 700px) {
+				@include style(2.125rem, 90%, $font_color_dark_second);
+			}
 		}
 }
 .inputs {
-	margin-top: 32px;
-		&__items {
-			width: 100%;
-			display: flex;
-			column-gap: 32px;
-			justify-content: space-between;
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(320px, 1fr));
+	grid-template-rows: repeat(2, auto);
+	column-gap: 32px;
+	row-gap: 50px;
+
+	@media (max-width: 1024px) {
+		grid-template-columns: repeat(2, minmax(280px, 1fr));
+		grid-template-rows: repeat(6, auto);
+
+		:nth-child(1) {
+			grid-column: span 2;
 		}
+		:nth-child(2) {
+			grid-column: span 2;
+		}
+		:nth-child(3) {
+			grid-column: span 2;
+		}
+	}
+	@media (max-width: 700px) {
+		grid-template-columns: repeat(1, minmax(280px, 1fr));
+		grid-template-rows: repeat(6, auto);
+		row-gap: 20px;
+		
+		:nth-child(1) {
+			grid-column: span 1;
+		}
+		:nth-child(2) {
+			grid-column: span 1;
+		}
+		:nth-child(3) {
+			grid-column: span 1;
+		}
+	}
 
 		&__item {
 			position: relative;
+			width: 100%;
 		}
 
 		&__label {
 			margin-bottom: 24px;
 			display: block;
-			@include style(1rem, 1.25rem, $font_color_light)
+			@include style(1rem, 1.25rem, $font_color_light);
+
+			@media (max-width: 700px) {
+				margin-bottom: 8px;
+			}
 		}
 
 		&__input {
+			font-family: 'Nekst-Black';
+			width: 100%;
 			display: block;
-			flex: 1 1 auto;
-
 			height: 68px;
 
 			background-color: $input_bg_color;
 			border-radius: 16px;
 			padding: 16px 24px;
 
-			font-family: 'Nekst-Black';
+			&:focus {
+				border: 2px solid #F3F3F4;
+				background-color: white;
+			}
+			&:active {
+				border: 2px solid #F3F3F4;
+				background-color: white;
+			}
+
 			@include style(1.875rem, 2.25rem, $font_color_light);
 			font-weight: 900;
+
+			@media (max-width: 700px) {
+				@include style(1.375rem, 2.25rem, $font_color_light);
+				height: 60px;
+			}
+
 		}
 
 		&__ruble {
@@ -56,8 +116,13 @@
 				font-family: 'Nekst-Black';
 				font-style: normal;
 				font-weight: 900;
-				top: -55px;
-				left: 380px;
+				top: 58px;
+				right: 22px;
+
+				@media (max-width: 700px) {
+					@include style(1.375rem, 1.25rem, #333E48);
+					top: 46px;
+				}
          }
 		}
 		&__first-payment {
@@ -73,7 +138,14 @@
 			font-style: normal;
 			font-weight: 900;
 			top: 50px;
-			left: 342px;
+			right: 8px;
+
+			@media (max-width: 700px) {
+				@include style(1.375rem, 1.25rem, #333E48);
+				height: 48px;
+				width: 67px;
+				top: 35px;
+			}
 		}
 		&__term {
 			position: relative;
@@ -84,13 +156,18 @@
 				font-family: 'Nekst-Black';
 				font-style: normal;
 				font-weight: 900;
-				top: -55px;
-				left: 340px;
+				top: 60px;
+				right: 24px;
+
+				@media (max-width: 700px) {
+					@include style(1.375rem, 1.25rem, #333E48);
+					top: 46px;
+				}
          }
 		}
 
 		&__range-wrapper{
-			width: 100%;
+			// width: 100%;
 			padding: 0px 20px;
 			overflow: hidden;
 		}
@@ -127,36 +204,46 @@
 
 }
 
-.results {
-	margin-top: 44px;
-		&__items {
-			display: flex;
-			justify-content: space-between;
-		}
-		&__item {
-			// margin-right: 32px;
-		}
+.result-input {
+	font-family: 'Nekst-Black';
+	padding: 16px 0px;
+	@include style(3.375rem, 36px, $font_color_dark);
+	font-weight: 900;
+	background-color: inherit;
+	border: none;
 
-		&__label {
-			margin-bottom: 8px;
-			display: block;
-			@include style(1rem, 150%, $font_color_light);			
-			position: relative;
-		}
+	&:active {
+		border: none;
+	}
+	&:focus {
+		border: none;
+	}
 
-		&__input {
-			width: 100%;
-			font-family: 'Nekst-Black';
-			@include style(3.375rem, 36px, $font_color_dark);
-			font-weight: 900;
-		}
 
-		&__submit {
-			margin-top: 24px;
-		}
+	@media (max-width: 700px) {
+		@include style(1.375rem, 2.25rem, $font_color_dark);
+		height: 60px;
+		padding: 5px 0px;
+		height: 20px;
+	}
 }
 
+.result-label {
+	margin-bottom: 0px;
+	display: block;
+	@include style(1rem, 150%, $font_color_dark);			
+	position: relative;
 
+	@media (max-width: 700px) {
+		margin-bottom: 0px;
+	}
+}
 
+.result-btn {
+	margin-top: 12px;
+}
 
+.disabled {
+	opacity: 0.4;
+}
 

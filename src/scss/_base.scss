@@ -57,6 +57,7 @@ html, body {
 $input_bg_color: #F3F3F4;
 
 $font_color_dark: #333333;
+
 $font_color_dark_second: #111111;
 $font_color_light: #575757;
 
@@ -82,7 +83,18 @@ $main_color: #FF9514;
       border-radius: 40px;
       width: 426px;
    }
+   &:hover {
+      background: $font_color_dark_second;
+   }
+   :active {
+      background: $font_color_light;
+   }
 }
+
+.btn-disabled {
+   background: rgba(255, 149, 20, 0.4);
+}
+
 
 
 // __________________________Тело_____________________________________
@@ -93,13 +105,13 @@ $main_color: #FF9514;
    overflow: hidden;
 
    //_________________Прибить футер к низу_________________
-   display: flex;
-   flex-direction: column;
+   // display: flex;
+   // flex-direction: column;
 }
 
 .container {
    //_________________Ширина контейнера_________________
-   width: 1345px;
+   max-width: 1345px;
 
    //_____________________По центру_____________________
    margin: 0 auto;
@@ -109,5 +121,6 @@ $main_color: #FF9514;
    box-sizing: content-box;
 }
 
-
-
+.hide {
+   display: none;
+}

@@ -1,6 +1,73 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/fetchData.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/fetchData.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.timers.js */ "./node_modules/core-js/modules/web.timers.js");
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
+
+
+
+
+
+var fetchData = function fetchData() {
+  var form = document.querySelector('.inputs__form'),
+    resultBtn = document.querySelector('.result-btn'),
+    spinner = document.querySelector('.spinner'),
+    btnContent = document.querySelector('.inpunts__btn-content');
+  var json = 0;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    resultBtn.classList.add('disabled');
+    resultBtn.setAttribute('disabled', true);
+    disabledHandler();
+    var formData = new FormData(form);
+    var obj = {};
+    formData.forEach(function (value, key) {
+      obj[key] = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_4__.toNumber)(value);
+    });
+    json = JSON.stringify(obj);
+    setTimeout(showJs, 2000);
+    function showJs() {
+      alert(json);
+      spinner.classList.toggle('hide');
+      btnContent.classList.toggle('hide');
+      resultBtn.removeAttribute('disabled');
+      resultBtn.classList.remove('disabled');
+      disabledHandler();
+    }
+  });
+  function disabledHandler() {
+    document.querySelectorAll(".inputs__input").forEach(function (item) {
+      item.classList.toggle('disabled');
+      if (item.hasAttribute('readonly')) {
+        item.removeAttribute('readonly');
+      } else {
+        item.setAttribute('readonly', true);
+      }
+    });
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchData);
+
+/***/ }),
+
 /***/ "./src/js/modules/input.js":
 /*!*********************************!*\
   !*** ./src/js/modules/input.js ***!
@@ -18,13 +85,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
-/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
-/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
-/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
-
+/* harmony import */ var _services_rangeParams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/rangeParams */ "./src/js/services/rangeParams.js");
+/* harmony import */ var _services_toSpaces__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/toSpaces */ "./src/js/services/toSpaces.js");
+/* harmony import */ var _services_toNumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/toNumber */ "./src/js/services/toNumber.js");
+/* harmony import */ var _services_inputValidation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/inputValidation */ "./src/js/services/inputValidation.js");
 
 
 
@@ -34,7 +98,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var input = function input() {
   var percentValue = 13;
-  var secondInputValue = 0;
   var priceInput = document.querySelector('#price'),
     firstPaymentInput = document.querySelector('#first-payment'),
     termInput = document.querySelector('#term'),
@@ -43,67 +106,71 @@ var input = function input() {
     termRange = document.querySelector('#termRange'),
     firstPymentProc = document.querySelector('.inputs__first-payment'),
     leasingSum = document.querySelector('#leasingSum'),
-    rubleSymbol = document.querySelector('#first-payment-label'),
-    montlyPayment = document.querySelector('#montlyPayment');
+    montlyPayment = document.querySelector('#montlyPayment'),
+    btnContent = document.querySelector('.inpunts__btn-content'),
+    resultBtn = document.querySelector('.result-btn');
   var myInputs = document.querySelectorAll(".inputs__input, .results__input");
   window.addEventListener('load', function () {
     myInputs.forEach(function (item) {
-      item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(item.value);
+      if (item.classList.contains('ruble')) {
+        item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(item.value) + ' ₽';
+      } else {
+        item.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(item.value);
+      }
     });
   });
 
   // Первый инпут
   priceInput.addEventListener('input', function (e) {
-    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(e.target.value);
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
-    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01)));
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(priceRange);
+    // Сброс до значений min-max
+    // if (toNumber(e.target.value) < 1500000) {
+    //    priceInput.value = toSpaces(1500000);
+    // } if (toNumber(e.target.value) > 10000000) {
+    //    priceInput.value = toSpaces(10000000);
+    // } else {
+    //    priceInput.value = toSpaces(e.target.value);
+    // }
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(priceInput.value, priceInput, '1 500 000', '10 000 000', true);
+    priceRange.value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01))) + ' ₽';
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(priceRange);
     leasingFunc();
   });
   priceRange.addEventListener('input', function () {
-    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(+priceRange.value);
-    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01)));
+    priceInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(+priceRange.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.round((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01))) + ' ₽';
     leasingFunc();
   });
 
   // Второй инпут
   firstPaymentInput.addEventListener('input', function (e) {
-    var x = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(e.target.value), " \u20BD");
-    firstPaymentInput.value = x;
-    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value);
+    firstPaymentInput.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(e.target.value) + ' ₽';
+    var value = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value);
     var minValue = String(Math.round(value * 0.1));
     var maxValue = String(Math.round(value * 0.6));
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
-    percentValue = Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value) / (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * 100);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true);
+    percentValue = Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) / (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * 100);
     firstPymentProc.innerHTML = "".concat(percentValue, "%");
     firstPaymentRange.value = percentValue;
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(firstPaymentRange);
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(firstPaymentRange);
     leasingFunc();
-    document.addEventListener('keydown', function (e) {
-      e.preventDefault();
-      if (e.key === 'Backspace') {
-        firstPaymentInput.value = x.slice(0, -1);
-      }
-    });
   });
   firstPaymentRange.addEventListener('input', function () {
     percentValue = +firstPaymentRange.value;
-    firstPaymentInput.value = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) * (percentValue * 0.01))), " \u20BD");
+    firstPaymentInput.value = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(Math.floor((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) * (percentValue * 0.01))), " \u20BD");
     firstPymentProc.innerHTML = "".concat(percentValue, "%");
     leasingFunc();
-    // rubleSymbolFunc()
   });
-
   window.addEventListener("hashchange", function (e) {
     console.log('da');
   });
 
   // Третий инпут
   termInput.addEventListener('input', function () {
-    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_7__["default"])(termInput.value, termInput, '6', '120', true);
+    (0,_services_inputValidation__WEBPACK_IMPORTED_MODULE_6__["default"])(termInput.value, termInput, '6', '120', true);
     termRange.value = termInput.value;
-    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_4__.params)(termRange);
+    (0,_services_rangeParams__WEBPACK_IMPORTED_MODULE_3__.params)(termRange);
     leasingFunc();
   });
   termRange.addEventListener('input', function () {
@@ -111,20 +178,17 @@ var input = function input() {
     leasingFunc();
   });
   var leasingFunc = function leasingFunc() {
-    var payment = Math.floor(((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(priceInput.value) - (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value)) * (0.05 * Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value)) / (Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value)) - 1)));
-    var leasing = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(firstPaymentInput.value) + (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_6__.toNumber)(termInput.value) * payment;
-    leasingSum.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(leasing);
-    montlyPayment.value = (0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_5__.toSpaces)(payment);
+    var payment = Math.floor(((0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(priceInput.value) - (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value)) * (0.05 * Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) / (Math.pow(1 + 0.05, (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value)) - 1)));
+    var leasing = (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(firstPaymentInput.value) + (0,_services_toNumber__WEBPACK_IMPORTED_MODULE_5__.toNumber)(termInput.value) * payment;
+    leasingSum.value = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(leasing), " \u20BD");
+    montlyPayment.value = "".concat((0,_services_toSpaces__WEBPACK_IMPORTED_MODULE_4__.toSpaces)(payment), " \u20BD");
   };
   leasingFunc();
-
-  // const rubleSymbolFunc = () => {
-  //    let value = `${(firstPaymentInput.value.length * 8) + 95}px`;
-  //    document.querySelector('.reserv').style.setProperty('--sq-value', value)
-  // }
-  // rubleSymbolFunc()
+  resultBtn.addEventListener('click', function () {
+    document.querySelector('.spinner').classList.toggle('hide');
+    btnContent.classList.toggle('hide');
+  });
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (input);
 
 /***/ }),
@@ -264,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var toNumber = function toNumber(value) {
-  return +value.replace(/ /g, '');
+  return +value.replace(/ /g, '').replace('₽', '');
 };
 
 /***/ }),
@@ -953,6 +1017,18 @@ var classList = documentCreateElement('span').classList;
 var DOMTokenListPrototype = classList && classList.constructor && classList.constructor.prototype;
 
 module.exports = DOMTokenListPrototype === Object.prototype ? undefined : DOMTokenListPrototype;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/engine-is-bun.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/engine-is-bun.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+/* global Bun -- Deno case */
+module.exports = typeof Bun == 'function' && Bun && typeof Bun.version == 'string';
 
 
 /***/ }),
@@ -2659,6 +2735,48 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/schedulers-fix.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/schedulers-fix.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var apply = __webpack_require__(/*! ../internals/function-apply */ "./node_modules/core-js/internals/function-apply.js");
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+var ENGINE_IS_BUN = __webpack_require__(/*! ../internals/engine-is-bun */ "./node_modules/core-js/internals/engine-is-bun.js");
+var USER_AGENT = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js/internals/engine-user-agent.js");
+var arraySlice = __webpack_require__(/*! ../internals/array-slice */ "./node_modules/core-js/internals/array-slice.js");
+var validateArgumentsLength = __webpack_require__(/*! ../internals/validate-arguments-length */ "./node_modules/core-js/internals/validate-arguments-length.js");
+
+var Function = global.Function;
+// dirty IE9- and Bun 0.3.0- checks
+var WRAP = /MSIE .\./.test(USER_AGENT) || ENGINE_IS_BUN && (function () {
+  var version = global.Bun.version.split('.');
+  return version.length < 3 || version[0] == 0 && (version[1] < 3 || version[1] == 3 && version[2] == 0);
+})();
+
+// IE9- / Bun 0.3.0- setTimeout / setInterval / setImmediate additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+// https://github.com/oven-sh/bun/issues/1633
+module.exports = function (scheduler, hasTimeArg) {
+  var firstParamIndex = hasTimeArg ? 2 : 1;
+  return WRAP ? function (handler, timeout /* , ...arguments */) {
+    var boundArgs = validateArgumentsLength(arguments.length, 1) > firstParamIndex;
+    var fn = isCallable(handler) ? handler : Function(handler);
+    var params = boundArgs ? arraySlice(arguments, firstParamIndex) : [];
+    var callback = boundArgs ? function () {
+      apply(fn, this, params);
+    } : fn;
+    return hasTimeArg ? scheduler(callback, timeout) : scheduler(callback);
+  } : scheduler;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/shared-key.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/shared-key.js ***!
@@ -3047,6 +3165,22 @@ module.exports = DESCRIPTORS && fails(function () {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/validate-arguments-length.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/internals/validate-arguments-length.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+var $TypeError = TypeError;
+
+module.exports = function (passed, required) {
+  if (passed < required) throw $TypeError('Not enough arguments');
+  return passed;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/weak-map-basic-detection.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/internals/weak-map-basic-detection.js ***!
@@ -3176,66 +3310,6 @@ var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_mod
 // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
   forEach: forEach
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.array.slice.js":
-/*!********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.slice.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
-var isConstructor = __webpack_require__(/*! ../internals/is-constructor */ "./node_modules/core-js/internals/is-constructor.js");
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js/internals/to-absolute-index.js");
-var lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ "./node_modules/core-js/internals/length-of-array-like.js");
-var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js/internals/to-indexed-object.js");
-var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
-var nativeSlice = __webpack_require__(/*! ../internals/array-slice */ "./node_modules/core-js/internals/array-slice.js");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
-
-var SPECIES = wellKnownSymbol('species');
-var $Array = Array;
-var max = Math.max;
-
-// `Array.prototype.slice` method
-// https://tc39.es/ecma262/#sec-array.prototype.slice
-// fallback for not array-like ES3 strings and DOM objects
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-  slice: function slice(start, end) {
-    var O = toIndexedObject(this);
-    var length = lengthOfArrayLike(O);
-    var k = toAbsoluteIndex(start, length);
-    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
-    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
-    var Constructor, result, n;
-    if (isArray(O)) {
-      Constructor = O.constructor;
-      // cross-realm fallback
-      if (isConstructor(Constructor) && (Constructor === $Array || isArray(Constructor.prototype))) {
-        Constructor = undefined;
-      } else if (isObject(Constructor)) {
-        Constructor = Constructor[SPECIES];
-        if (Constructor === null) Constructor = undefined;
-      }
-      if (Constructor === $Array || Constructor === undefined) {
-        return nativeSlice(O, k, fin);
-      }
-    }
-    result = new (Constructor === undefined ? $Array : Constructor)(max(fin - k, 0));
-    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
-    result.length = n;
-    return result;
-  }
 });
 
 
@@ -3524,6 +3598,61 @@ for (var COLLECTION_NAME in DOMIterables) {
 handlePrototype(DOMTokenListPrototype);
 
 
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.set-interval.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/modules/web.set-interval.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var schedulersFix = __webpack_require__(/*! ../internals/schedulers-fix */ "./node_modules/core-js/internals/schedulers-fix.js");
+
+var setInterval = schedulersFix(global.setInterval, true);
+
+// Bun / IE9- setInterval additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+$({ global: true, bind: true, forced: global.setInterval !== setInterval }, {
+  setInterval: setInterval
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.set-timeout.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/web.set-timeout.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var schedulersFix = __webpack_require__(/*! ../internals/schedulers-fix */ "./node_modules/core-js/internals/schedulers-fix.js");
+
+var setTimeout = schedulersFix(global.setTimeout, true);
+
+// Bun / IE9- setTimeout additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+$({ global: true, bind: true, forced: global.setTimeout !== setTimeout }, {
+  setTimeout: setTimeout
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.timers.js":
+/*!****************************************************!*\
+  !*** ./node_modules/core-js/modules/web.timers.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+// TODO: Remove this module from `core-js@4` since it's split to modules listed below
+__webpack_require__(/*! ../modules/web.set-interval */ "./node_modules/core-js/modules/web.set-interval.js");
+__webpack_require__(/*! ../modules/web.set-timeout */ "./node_modules/core-js/modules/web.set-timeout.js");
+
+
 /***/ })
 
 /******/ 	});
@@ -3616,11 +3745,14 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_range__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/range */ "./src/js/modules/range.js");
 /* harmony import */ var _modules_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/input */ "./src/js/modules/input.js");
+/* harmony import */ var _modules_fetchData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/fetchData */ "./src/js/modules/fetchData.js");
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
   (0,_modules_range__WEBPACK_IMPORTED_MODULE_0__["default"])();
   (0,_modules_input__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_modules_fetchData__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 })();
 
