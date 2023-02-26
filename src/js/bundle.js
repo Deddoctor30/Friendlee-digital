@@ -56,10 +56,10 @@ var fetchData = function fetchData() {
   function disabledHandler() {
     document.querySelectorAll(".inputs__input").forEach(function (item) {
       item.classList.toggle('disabled');
-      if (item.hasAttribute('readonly')) {
+      if (item.hasAttribute('readonly') && !item.classList.contains('result-input')) {
         item.removeAttribute('readonly');
       } else {
-        item.setAttribute('readonly', true);
+        item.setAttribute('readonly', '');
       }
     });
   }
@@ -105,8 +105,8 @@ var input = function input() {
     firstPaymentRange = document.querySelector('#firstPaymentRange'),
     termRange = document.querySelector('#termRange'),
     firstPymentProc = document.querySelector('.inputs__first-payment'),
-    leasingSum = document.querySelector('#leasingSum'),
-    montlyPayment = document.querySelector('#montlyPayment'),
+    leasingSum = document.querySelector('#leasing'),
+    montlyPayment = document.querySelector('#payment'),
     btnContent = document.querySelector('.inpunts__btn-content'),
     resultBtn = document.querySelector('.result-btn');
   var myInputs = document.querySelectorAll(".inputs__input, .results__input");
