@@ -2,7 +2,6 @@ import {toSpaces} from '../services/toSpaces';
 import { toNumber } from '../services/toNumber';
 
 const inputValidation = (value, position, minValue, maxValue, isNumber = true) => {
-
    if (document.querySelector('.valudation')) {
       document.querySelector('.valudation').remove()
    }

@@ -1,21 +1,14 @@
 @import "../base";
-
-
-.wrapper {
-}
 .main {
    margin: 213px 0px 213px 0px;
-
 	@media (max-width: 1024px) {
 		margin: 64px 0px 156px 0px;
 	}
-
 	@media (max-width: 700px) {
 		margin: 44px 0px 64px 0px;
 	}
 		&__title {
 			max-width: 753px;
-
 			@include style(3.375rem, 90%, $font_color_dark_second);
 			font-family: 'Nekst-Black';
 			font-style: normal;
@@ -32,11 +25,9 @@
 	grid-template-rows: repeat(2, auto);
 	column-gap: 32px;
 	row-gap: 50px;
-
 	@media (max-width: 1024px) {
 		grid-template-columns: repeat(2, minmax(280px, 1fr));
 		grid-template-rows: repeat(6, auto);
-
 		:nth-child(1) {
 			grid-column: span 2;
 		}
@@ -62,32 +53,26 @@
 			grid-column: span 1;
 		}
 	}
-
 		&__item {
 			position: relative;
 			width: 100%;
 		}
-
 		&__label {
 			margin-bottom: 24px;
 			display: block;
 			@include style(1rem, 1.25rem, $font_color_light);
-
 			@media (max-width: 700px) {
 				margin-bottom: 8px;
 			}
 		}
-
 		&__input {
 			font-family: 'Nekst-Black';
 			width: 100%;
 			display: block;
 			height: 68px;
-
 			background-color: $input_bg_color;
 			border-radius: 16px;
 			padding: 16px 24px;
-
 			&:focus {
 				border: 2px solid #F3F3F4;
 				background-color: white;
@@ -96,17 +81,13 @@
 				border: 2px solid #F3F3F4;
 				background-color: white;
 			}
-
 			@include style(1.875rem, 2.25rem, $font_color_light);
 			font-weight: 900;
-
 			@media (max-width: 700px) {
 				@include style(1.375rem, 2.25rem, $font_color_light);
 				height: 60px;
 			}
-
 		}
-
 		&__ruble {
 			position: relative;
 			&::after {
@@ -118,7 +99,6 @@
 				font-weight: 900;
 				top: 58px;
 				right: 22px;
-
 				@media (max-width: 700px) {
 					@include style(1.375rem, 1.25rem, #333E48);
 					top: 46px;
@@ -139,7 +119,6 @@
 			font-weight: 900;
 			top: 50px;
 			right: 8px;
-
 			@media (max-width: 700px) {
 				@include style(1.375rem, 1.25rem, #333E48);
 				height: 48px;
@@ -158,19 +137,16 @@
 				font-weight: 900;
 				top: 60px;
 				right: 24px;
-
 				@media (max-width: 700px) {
 					@include style(1.375rem, 1.25rem, #333E48);
 					top: 46px;
 				}
          }
 		}
-
 		&__range-wrapper{
 			padding: 0px 20px;
 			overflow: hidden;
 		}
-
 		&__slider {
 			position: absolute;
 			bottom: 0;
@@ -183,7 +159,6 @@
 			background-color: #E1E1E1;
 			outline: none;
 		}
-
 		&__slider::-webkit-slider-thumb {
 			-webkit-appearance: none;
 			appearance: none;
@@ -195,12 +170,9 @@
 			-webkit-transition: .2s;
 			transform: scale(1);
 	  }
-
 		&__slider::-webkit-slider-thumb:hover {
 			transform: scale(1.2);
 	  }
-
-
 }
 
 .result-input {
@@ -210,15 +182,12 @@
 	font-weight: 900;
 	background-color: inherit;
 	border: none;
-
 	&:active {
 		border: none;
 	}
 	&:focus {
 		border: none;
 	}
-
-
 	@media (max-width: 700px) {
 		@include style(1.375rem, 2.25rem, $font_color_dark);
 		height: 60px;
@@ -226,7 +195,6 @@
 		height: 20px;
 	}
 }
-
 .result-label {
 	margin-bottom: 0px;
 	display: block;
@@ -237,16 +205,13 @@
 		margin-bottom: 0px;
 	}
 }
-
 .result-btn {
 	margin-top: 12px;
-
 	@media (max-width: 700px) {
 		@include style(1.375rem, 2.25rem, #FFFFFF);
 		height: 60px;
 	}
 }
-
 .disabled {
 	opacity: 0.4;
 }

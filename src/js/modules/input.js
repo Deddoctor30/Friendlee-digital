@@ -4,9 +4,7 @@ import { toNumber } from '../services/toNumber';
 import inputValidation from '../services/inputValidation';
 
 const input = () => {
-
    let percentValue = 13;
-
    const priceInput = document.querySelector('#price'),
          firstPaymentInput = document.querySelector('#first-payment'),
          termInput = document.querySelector('#term'),
@@ -18,9 +16,7 @@ const input = () => {
          montlyPayment = document.querySelector('#payment'),
          btnContent = document.querySelector('.inpunts__btn-content'),
          resultBtn = document.querySelector('.result-btn');
-
    const myInputs = document.querySelectorAll(".inputs__input, .results__input");
-
    window.addEventListener('load', () => {
       myInputs.forEach(item => {
          if (item.classList.contains('ruble')) {
@@ -30,20 +26,8 @@ const input = () => {
          }
       })
    });
-
-   // Первый инпут
    priceInput.addEventListener('input', (e) => {
-
-      // Сброс до значений min-max
-      // if (toNumber(e.target.value) < 1500000) {
-      //    priceInput.value = toSpaces(1500000);
-      // } if (toNumber(e.target.value) > 10000000) {
-      //    priceInput.value = toSpaces(10000000);
-      // } else {
-      //    priceInput.value = toSpaces(e.target.value);
-      // }
       priceInput.value = toSpaces(e.target.value);
-
       inputValidation(priceInput.value, priceInput, '1 500 000', '10 000 000', true)
       priceRange.value = toNumber(priceInput.value);
       firstPaymentInput.value = toSpaces(Math.round(toNumber(priceInput.value) * (percentValue*0.01))) + ' ₽';
@@ -59,11 +43,9 @@ const input = () => {
    // Второй инпут
    firstPaymentInput.addEventListener('input', (e) => {
       firstPaymentInput.value = toSpaces(e.target.value) + ' ₽';
-      
       const value = toNumber(priceInput.value);
       const minValue = String(Math.round(value * 0.1));
       const maxValue = String(Math.round(value * 0.6));
-      
       inputValidation(firstPaymentInput.value, firstPaymentInput, minValue, maxValue, true)
       percentValue = Math.floor((toNumber(firstPaymentInput.value) / toNumber(priceInput.value)*100))
       firstPymentProc.innerHTML = `${percentValue}%`
@@ -94,7 +76,6 @@ const input = () => {
       termInput.value = +termRange.value;
       leasingFunc()
    })
-
    const leasingFunc = () => {
       const payment = Math.floor((toNumber(priceInput.value) - toNumber(firstPaymentInput.value)) * (0.05 * Math.pow((1 + 0.05), toNumber(termInput.value)) / (Math.pow((1 + 0.05), toNumber(termInput.value)) - 1)));
       const leasing = toNumber(firstPaymentInput.value) + (toNumber(termInput.value) * payment);
@@ -102,7 +83,6 @@ const input = () => {
       montlyPayment.value = `${toSpaces(payment)} ₽`;
    }
    leasingFunc()
-
    resultBtn.addEventListener('click', () => {
       document.querySelector('.spinner').classList.toggle('hide');
       btnContent.classList.toggle('hide')

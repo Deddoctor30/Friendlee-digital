@@ -1,19 +1,9 @@
-// _________________________________Шрифты____________________________________
-@import url(../fonts/Gilroy/bold/style.css);
-@import url(../fonts/Gilroy/regular/style.css);
-@import url(../fonts//Nekst/black/style.css);
-@import url(../fonts//Nekst/regular/style.css);
-// ___________________________________________________________________________
-
-
-// _________________________________Переходы____________________________________
-
+@import './fonts.scss';
+@import './variables.scss';
 
 * {
    transition: 0.3s all ease 0s;
 }
-
-// ____________________________Дефолтные настройки______________________________
 
 html, body {
    font-family: gilroy;
@@ -22,33 +12,14 @@ html, body {
    font-weight: 400;
 	color: black;
 }
-
-// _____________________________SCSS переменные________________________________
-
-
 @mixin style($fz, $lh, $c) {
    font-size: $fz;
    line-height: $lh;
    color: $c;
 }
 
-$input_bg_color: #F3F3F4;
-
-$font_color_dark: #333333;
-
-$font_color_dark_second: #111111;
-$font_color_light: #575757;
-
-
-$main_color: #FF9514;
-
-// __________________________________Кнопки_______________________________________
-
-
-
 .btn {
    height: 68px;
-
    @include style(1.875rem, 2.25rem, $font_color_dark);
    font-family: 'Nekst-Black';
    font-style: normal;
@@ -66,33 +37,19 @@ $main_color: #FF9514;
       background: $font_color_light;
    }
 }
-
 .btn-disabled {
    background: rgba(255, 149, 20, 0.4);
 }
-
-
-
-// __________________________Тело_____________________________________
-
-
 .wrapper {
    min-height: 100%;
    overflow: hidden;
 }
-
 .container {
-   //_________________Ширина контейнера_________________
    max-width: 1345px;
-
-   //_____________________По центру_____________________
    margin: 0 auto;
-
-   //_____________________Отступ безопасности_____________________
    padding: 0px 15px;
    box-sizing: content-box;
 }
-
 .hide {
    display: none;
 }
